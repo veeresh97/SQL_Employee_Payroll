@@ -1,13 +1,48 @@
-mysql> update employee_payroll set gender = 'M' where name = 'Bill' or name = 'Mike' or name = 'Jake';
-Query OK, 3 rows affected (0.27 sec)
-Rows matched: 3  Changed: 3  Warnings: 0
-
 mysql> SELECT * FROM employee_payroll;
 +----+------+--------+--------+------------+
 | id | name | gender | salary | start      |
 +----+------+--------+--------+------------+
-|  1 | Bill | M      | 100000 | 2018-01-03 |
+|  1 | Bill | M      | 400000 | 2018-01-03 |
 |  2 | Mike | M      | 200000 | 2019-11-13 |
 |  3 | Jake | M      | 300000 | 2020-11-21 |
 +----+------+--------+--------+------------+
-3 rows in set (0.00 sec)
+3 rows in set (0.04 sec)
+
+mysql> SELECT AVG(salary) FROM employee_payroll WHERE gender = 'M' GROUP BY gender;
++-------------+
+| AVG(salary) |
++-------------+
+|      300000 |
++-------------+
+1 row in set (0.06 sec)
+
+mysql> update employee_payroll set gender = 'F' where name = 'Bill';
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT gender, AVG(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | AVG(salary) |
++--------+-------------+
+| F      |      400000 |
+| M      |      250000 |
++--------+-------------+
+2 rows in set (0.09 sec)
+
+mysql> SELECT gender, COUNT(name) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | COUNT(name) |
++--------+-------------+
+| F      |           1 |
+| M      |           2 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT gender, SUM(salary) FROM employee_payroll GROUP BY gender;
++--------+-------------+
+| gender | SUM(salary) |
++--------+-------------+
+| F      |      400000 |
+| M      |      500000 |
++--------+-------------+
+2 rows in set (0.00 sec)
