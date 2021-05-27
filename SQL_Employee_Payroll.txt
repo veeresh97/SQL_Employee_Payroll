@@ -1,1 +1,14 @@
-Welcome to Employee Payroll Database
+mysql> CREATE DATABASE payroll_service;
+Query OK, 1 row affected (0.20 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.05 sec)
