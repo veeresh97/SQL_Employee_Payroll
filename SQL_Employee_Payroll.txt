@@ -1,18 +1,13 @@
-mysql> SELECT salary FROM employee_payroll WHERE name = 'Mike';
-+--------+
-| salary |
-+--------+
-| 200000 |
-+--------+
-1 row in set (0.04 sec)
+mysql> update employee_payroll set gender = 'M' where name = 'Bill' or name = 'Mike' or name = 'Jake';
+Query OK, 3 rows affected (0.27 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
 
-mysql> SELECT * FROM employee_payroll
-    ->  WHERE start BETWEEN CAST('2018-01-01' AS DATE) AND DATE(NOW());
-+----+------+--------+------------+
-| id | name | salary | start      |
-+----+------+--------+------------+
-|  1 | Bill | 100000 | 2018-01-03 |
-|  2 | Mike | 200000 | 2019-11-13 |
-|  3 | Jake | 300000 | 2020-11-21 |
-+----+------+--------+------------+
-3 rows in set (0.06 sec)
+mysql> SELECT * FROM employee_payroll;
++----+------+--------+--------+------------+
+| id | name | gender | salary | start      |
++----+------+--------+--------+------------+
+|  1 | Bill | M      | 100000 | 2018-01-03 |
+|  2 | Mike | M      | 200000 | 2019-11-13 |
+|  3 | Jake | M      | 300000 | 2020-11-21 |
++----+------+--------+--------+------------+
+3 rows in set (0.00 sec)
